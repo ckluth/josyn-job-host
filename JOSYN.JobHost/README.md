@@ -7,6 +7,14 @@ verweist auf dieses Paket. Es übernimmt die IPC-Verbindung zum JAPServer, holt 
 ab, dispatcht die Job-Methode per Reflection und sendet das Ergebnis zurück — alles über
 das JOSYN-Result-Pattern.
 
+> **Hinweis zum Paket-Namen:** Der Name `JOSYN.JobHost` weicht bewusst vom plattformweiten
+> `JOSYN.<Schicht>.<Komponente>`-Muster ab. Dieses Paket ist eine **nach außen gerichtete
+> Entwickler-API** — Job-Autoren haben keinen Bezug zur internen JAP-Protokollschicht.
+> Das Präfix `Jap` wird daher an der API-Oberfläche verborgen.
+> Die vollständige Entscheidung ist dokumentiert in
+> [`josyn-platform/decisions/ADR-001-platform-naming.md`](https://github.com/ckluth/josyn-platform/blob/main/decisions/ADR-001-platform-naming.md)
+> und [`josyn-platform/architecture/naming-conventions.md`](https://github.com/ckluth/josyn-platform/blob/main/architecture/naming-conventions.md).
+
 ---
 
 ## Motivation
