@@ -1,8 +1,8 @@
-# JOSYN.System.JobHost
+# JOSYN.Jap.JobHost
 
-Part of the **JOSYN** (JobSystem Next) ecosystem — member of the `JOSYN.System.Frontend`-Schicht.
+Part of the **JOSYN** (JobSystem Next) ecosystem — member of the `JOSYN.Jap.JobHost`-Schicht.
 
-`JOSYN.System.JobHost` ist die **Job-Entwickler-Bibliothek**. Jede Job-Exe
+`JOSYN.Jap.JobHost` ist die **Job-Entwickler-Bibliothek**. Jede Job-Exe
 verweist auf dieses Paket. Es übernimmt die IPC-Verbindung zum JAPServer, holt Job-Argumente
 ab, dispatcht die Job-Methode per Reflection und sendet das Ergebnis zurück — alles über
 das JOSYN-Result-Pattern.
@@ -16,7 +16,7 @@ Verbindungsaufbau, Argument-Deserialisierung, Ergebnis-Serialisierung — erledi
 Bibliothek. Eine minimale Job-Exe reduziert sich auf eine Zeile `Program.cs`:
 
 ```csharp
-return await JOSYN.System.Frontend.Core.Run(args);
+return await JOSYN.Jap.JobHost.Core.Run(args);
 ```
 
 Der Job-Autor markiert genau eine `public static`-Methode mit `[JobEntryPoint]` —
@@ -29,13 +29,13 @@ den Rest übernimmt die Laufzeit.
 ### 1 — Job-Exe (`Program.cs`)
 
 ```csharp
-return await JOSYN.System.Frontend.Core.Run(args);
+return await JOSYN.Jap.JobHost.Core.Run(args);
 ```
 
 ### 2 — Job-Implementierung
 
 ```csharp
-using JOSYN.System.Frontend.Attributes;
+using JOSYN.Jap.JobHost.Attributes;
 
 public static class MeinJob
 {
@@ -65,7 +65,7 @@ flowchart TD
 ```
 
 **Transport:** `JOSYN.Foundation.JIP` Named Pipes (session-isoliert per GUID-Key).
-**Anwendungsprotokoll:** `JOSYN.System.Shared.Contract.IJosynApplicationProtocol`.
+**Anwendungsprotokoll:** `JOSYN.Jap.Shared.Contract.IJosynApplicationProtocol`.
 **Serialisierung:** `JOSYN.Foundation.PropertyBag` (INI oder JSON, auto-erkannt).
 
 ---
@@ -107,8 +107,8 @@ PutError selbst fehlgeschlagen  →  LocalLog.Error(...)              (Fallback 
 | `JOSYN.Foundation.ResultPattern` | Fehler-als-Wert-Pattern durchgängig |
 | `JOSYN.Foundation.JIP` | Named-Pipe-IPC-Transport |
 | `JOSYN.Foundation.PropertyBag` | Argument- / Ergebnis-Serialisierung |
-| `JOSYN.System.Shared.Contract` | `IJosynApplicationProtocol`-Anwendungsprotokoll |
-| `JOSYN.System.Shared.Log` | `LocalLog` für Fehlerprotokollierung |
+| `JOSYN.Jap.Shared.Contract` | `IJosynApplicationProtocol`-Anwendungsprotokoll |
+| `JOSYN.Jap.Shared.Log` | `LocalLog` für Fehlerprotokollierung |
 
 ---
 

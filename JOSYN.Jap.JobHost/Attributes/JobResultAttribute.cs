@@ -1,4 +1,4 @@
-namespace JOSYN.System.JobHost.Attributes;
+namespace JOSYN.Jap.JobHost.Attributes;
 
 /// <summary>
 /// Marks a class as the result type of a job.

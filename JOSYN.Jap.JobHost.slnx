@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="JOSYN.Jap.JobHost/JOSYN.Jap.JobHost.csproj" />
+  <Project Path="JOSYN.Jap.JobHost.Test/JOSYN.Jap.JobHost.Test.csproj" />
+  <Project Path="JOSYN.MyDemoJob/MyDemoJob.csproj" />
+</Solution>

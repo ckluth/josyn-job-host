@@ -1,4 +1,4 @@
-namespace JOSYN.System.JobHost.Attributes;
+namespace JOSYN.Jap.JobHost.Attributes;
 
 /// <summary>
 /// Marks the method that serves as the entry point for a job.

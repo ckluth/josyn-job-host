@@ -7,14 +7,14 @@
 		<IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 		<LangVersion>latest</LangVersion>
-		<AssemblyName>JOSYN.System.JobHost</AssemblyName>
-		<RootNamespace>JOSYN.System.JobHost</RootNamespace>
+		<AssemblyName>JOSYN.Jap.JobHost</AssemblyName>
+		<RootNamespace>JOSYN.Jap.JobHost</RootNamespace>
 		<PlatformTarget>AnyCPU</PlatformTarget>
 		<Version>1.0.0-preview01</Version>
 		<Company>HAEVG</Company>
 		<Authors>HAEVG SWE</Authors>
-		<Description>JOSYN.System.JobHost — reusable job host library for JOSYN job executables.</Description>
-		<PackageId>JOSYN.System.JobHost</PackageId>
+		<Description>JOSYN.Jap.JobHost — reusable job host library for JOSYN job executables.</Description>
+		<PackageId>JOSYN.Jap.JobHost</PackageId>
 		<RepositoryType>git</RepositoryType>
 		<PackageProjectUrl>https://github.com/ckluth/JOSYN</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/ckluth/JOSYN</RepositoryUrl>
@@ -26,7 +26,7 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
-			<_Parameter1>JOSYN.System.JobHost.Test</_Parameter1>
+			<_Parameter1>JOSYN.Jap.JobHost.Test</_Parameter1>
 		</AssemblyAttribute>
 	</ItemGroup>
 	<ItemGroup>
@@ -37,7 +37,7 @@
 		<PackageReference Include="JOSYN.Foundation.JIP" Version="1.0.0-preview01"/>
 		<PackageReference Include="JOSYN.Foundation.PropertyBag" Version="1.0.0-preview01"/>
 		<PackageReference Include="JOSYN.Foundation.ResultPattern" Version="1.0.0-preview01"/>
-		<PackageReference Include="JOSYN.System.Shared.Contract" Version="1.0.0-preview01"/>
-		<PackageReference Include="JOSYN.System.Shared.Log" Version="1.0.0-preview01"/>
+		<PackageReference Include="JOSYN.Jap.Shared.Contract" Version="1.0.0-preview01"/>
+		<PackageReference Include="JOSYN.Jap.Shared.Log" Version="1.0.0-preview01"/>
 	</ItemGroup>
 </Project>

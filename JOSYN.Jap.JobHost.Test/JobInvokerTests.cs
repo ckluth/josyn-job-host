@@ -1,9 +1,9 @@
 using NUnit.Framework;
 using JOSYN.Foundation.ResultPattern;
 using JOSYN.Foundation.PropertyBag;
-using JOSYN.System.JobHost.Attributes;
+using JOSYN.Jap.JobHost.Attributes;
 
-namespace JOSYN.System.JobHost.Test;
+namespace JOSYN.Jap.JobHost.Test;
 
 [TestFixture]
 public sealed class JobInvokerTests

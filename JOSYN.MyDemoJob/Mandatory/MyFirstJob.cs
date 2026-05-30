@@ -1,4 +1,4 @@
-using JOSYN.System.JobHost.Attributes;
+using JOSYN.Jap.JobHost.Attributes;
 
 namespace JOSYN.MyDemoJob;
 

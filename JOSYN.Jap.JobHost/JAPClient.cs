@@ -1,9 +1,9 @@
 using JOSYN.Foundation.JIP;
 using JOSYN.Foundation.PropertyBag;
 using JOSYN.Foundation.ResultPattern;
-using JOSYN.System.Shared.Contract;
+using JOSYN.Jap.Shared.Contract;
 
-namespace JOSYN.System.JobHost;
+namespace JOSYN.Jap.JobHost;
 
 internal sealed class JAPClient : IJosynApplicationProtocol
 {

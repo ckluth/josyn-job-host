@@ -1,4 +1,4 @@
-namespace JOSYN.System.JobHost;
+namespace JOSYN.Jap.JobHost;
 
 /// <summary>
 /// Placeholder — intentionally unused. Reserved for a future conditional parallel execution feature:

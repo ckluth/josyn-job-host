@@ -2,10 +2,10 @@ using System.Reflection;
 using System.Text;
 using JOSYN.Foundation.PropertyBag;
 using JOSYN.Foundation.ResultPattern;
-using JOSYN.System.Shared.Contract;
-using JOSYN.System.Shared.Log;
+using JOSYN.Jap.Shared.Contract;
+using JOSYN.Jap.Shared.Log;
 
-namespace JOSYN.System.JobHost;
+namespace JOSYN.Jap.JobHost;
 
 /// <inheritdoc cref="ICore"/>
 public sealed class Core : ICore
