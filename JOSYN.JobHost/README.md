@@ -1,8 +1,8 @@
-# JOSYN.Jap.JobHost
+# JOSYN.JobHost
 
-Part of the **JOSYN** (JobSystem Next) ecosystem — member of the `JOSYN.Jap.JobHost`-Schicht.
+Part of the **JOSYN** (JobSystem Next) ecosystem — die Job-Entwickler-Bibliothek.
 
-`JOSYN.Jap.JobHost` ist die **Job-Entwickler-Bibliothek**. Jede Job-Exe
+`JOSYN.JobHost` ist die **Job-Entwickler-Bibliothek**. Jede Job-Exe
 verweist auf dieses Paket. Es übernimmt die IPC-Verbindung zum JAPServer, holt Job-Argumente
 ab, dispatcht die Job-Methode per Reflection und sendet das Ergebnis zurück — alles über
 das JOSYN-Result-Pattern.
@@ -16,7 +16,7 @@ Verbindungsaufbau, Argument-Deserialisierung, Ergebnis-Serialisierung — erledi
 Bibliothek. Eine minimale Job-Exe reduziert sich auf eine Zeile `Program.cs`:
 
 ```csharp
-return await JOSYN.Jap.JobHost.Core.Run(args);
+return await JOSYN.JobHost.Core.Run(args);
 ```
 
 Der Job-Autor markiert genau eine `public static`-Methode mit `[JobEntryPoint]` —
@@ -29,13 +29,13 @@ den Rest übernimmt die Laufzeit.
 ### 1 — Job-Exe (`Program.cs`)
 
 ```csharp
-return await JOSYN.Jap.JobHost.Core.Run(args);
+return await JOSYN.JobHost.Core.Run(args);
 ```
 
 ### 2 — Job-Implementierung
 
 ```csharp
-using JOSYN.Jap.JobHost.Attributes;
+using JOSYN.JobHost.Attributes;
 
 public static class MeinJob
 {

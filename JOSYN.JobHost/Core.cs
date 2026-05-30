@@ -5,7 +5,7 @@ using JOSYN.Foundation.ResultPattern;
 using JOSYN.Jap.Shared.Contract;
 using JOSYN.Jap.Shared.Log;
 
-namespace JOSYN.Jap.JobHost;
+namespace JOSYN.JobHost;
 
 /// <inheritdoc cref="ICore"/>
 public sealed class Core : ICore

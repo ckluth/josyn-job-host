@@ -2,9 +2,9 @@
 CHCP 1252
 cd /d "%~dp0.."
 
-dotnet pack JOSYN.Jap.JobHost --output "..\..\local-packages"
+dotnet pack JOSYN.JobHost --output "..\local-packages"
 if %ERRORLEVEL% neq 0 (
-    echo [FEHLER] Pack JOSYN.Jap.JobHost fehlgeschlagen.
+    echo [FEHLER] Pack JOSYN.JobHost fehlgeschlagen.
     exit /b %ERRORLEVEL%
 )
 

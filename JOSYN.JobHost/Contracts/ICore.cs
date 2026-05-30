@@ -1,4 +1,4 @@
-namespace JOSYN.Jap.JobHost;
+namespace JOSYN.JobHost;
 
 /// <summary>
 /// Contract for the entry point of a job executable.

@@ -3,9 +3,9 @@ using System.Text;
 using JOSYN.Foundation.PropertyBag;
 using JOSYN.Foundation.ResultPattern;
 using JOSYN.Jap.Shared.Contract;
-using JOSYN.Jap.JobHost.Attributes;
+using JOSYN.JobHost.Attributes;
 
-namespace JOSYN.Jap.JobHost;
+namespace JOSYN.JobHost;
 
 //public static class JobInvoker<T> where T : class
 //{

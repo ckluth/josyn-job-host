@@ -1,9 +1,9 @@
 using JOSYN.Foundation.ResultPattern;
 using JOSYN.Foundation.PropertyBag;
 using JOSYN.Jap.Shared.Contract;
-using JOSYN.Jap.JobHost.Attributes;
+using JOSYN.JobHost.Attributes;
 
-namespace JOSYN.Jap.JobHost.Test;
+namespace JOSYN.JobHost.Test;
 
 // ── Fake protocol ─────────────────────────────────────────────────────────────
 

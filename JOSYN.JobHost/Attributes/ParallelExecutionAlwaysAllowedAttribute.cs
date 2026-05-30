@@ -1,4 +1,4 @@
-namespace JOSYN.Jap.JobHost.Attributes;
+namespace JOSYN.JobHost.Attributes;
 
 /// <summary>
 /// Declares that the associated job method may be executed in parallel.

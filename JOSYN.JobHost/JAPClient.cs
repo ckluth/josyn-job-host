@@ -3,7 +3,7 @@ using JOSYN.Foundation.PropertyBag;
 using JOSYN.Foundation.ResultPattern;
 using JOSYN.Jap.Shared.Contract;
 
-namespace JOSYN.Jap.JobHost;
+namespace JOSYN.JobHost;
 
 internal sealed class JAPClient : IJosynApplicationProtocol
 {

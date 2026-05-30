@@ -7,8 +7,8 @@
 		<IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 		<LangVersion>latest</LangVersion>
-		<AssemblyName>JOSYN.Jap.JobHost.Test</AssemblyName>
-		<RootNamespace>JOSYN.Jap.JobHost.Test</RootNamespace>
+		<AssemblyName>JOSYN.JobHost.Test</AssemblyName>
+		<RootNamespace>JOSYN.JobHost.Test</RootNamespace>
 		<PlatformTarget>AnyCPU</PlatformTarget>
 	</PropertyGroup>
 	<ItemGroup>
@@ -17,6 +17,6 @@
 		<PackageReference Include="NUnit3TestAdapter" Version="6.1.0"/>
 	</ItemGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\JOSYN.Jap.JobHost\JOSYN.Jap.JobHost.csproj"/>
+		<ProjectReference Include="..\JOSYN.JobHost\JOSYN.JobHost.csproj"/>
 	</ItemGroup>
 </Project>
