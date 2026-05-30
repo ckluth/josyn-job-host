@@ -12,8 +12,8 @@ das JOSYN-Result-Pattern.
 > Entwickler-API** — Job-Autoren haben keinen Bezug zur internen JAP-Protokollschicht.
 > Das Präfix `Jap` wird daher an der API-Oberfläche verborgen.
 > Die vollständige Entscheidung ist dokumentiert in
-> [`josyn-platform/decisions/ADR-001-platform-naming.md`](https://github.com/ckluth/josyn-platform/blob/main/decisions/ADR-001-platform-naming.md)
-> und [`josyn-platform/architecture/naming-conventions.md`](https://github.com/ckluth/josyn-platform/blob/main/architecture/naming-conventions.md).
+> [`josyn-platform/decisions/ADR-001-platform-naming.md`](../../josyn-platform/decisions/ADR-001-platform-naming.md)
+> und [`josyn-platform/architecture/naming-conventions.md`](../../josyn-platform/architecture/naming-conventions.md).
 
 ---
 
