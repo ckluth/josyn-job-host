@@ -24,14 +24,14 @@ public sealed class Core : ICore
             var createJAPClient = await JAPClient.CreateConnectedClient(args);
             if (!createJAPClient.Succeeded)
             {
-                LocalLog.Error(createJAPClient.ToResult());
+                LocalLog.WriteError(createJAPClient.ToResult());
                 return -1;
             }
 
             var invokeResult = await JobInvoker.InvokeJob(createJAPClient.Value);
             if (invokeResult.Succeeded) return 0;
 
-            LocalLog.Error(invokeResult);
+            LocalLog.WriteError(invokeResult);
             await ReportErrorToServer(createJAPClient.Value, invokeResult);
             return -2;
         }
@@ -65,7 +65,7 @@ public sealed class Core : ICore
         var put = await client.PutError(report);
         
         if (!put.Succeeded)
-            LocalLog.Error($"PutError an Server fehlgeschlagen: {put.ErrorMessage}");
+            LocalLog.WriteError($"PutError an Server fehlgeschlagen: {put.ErrorMessage}");
     }
 }
 

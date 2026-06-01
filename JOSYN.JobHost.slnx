@@ -1,5 +1,4 @@
 <Solution>
   <Project Path="JOSYN.JobHost/JOSYN.JobHost.csproj" />
   <Project Path="JOSYN.JobHost.Test/JOSYN.JobHost.Test.csproj" />
-  <Project Path="JOSYN.MyDemoJob/MyDemoJob.csproj" />
 </Solution>
