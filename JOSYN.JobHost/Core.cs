@@ -1,6 +1,5 @@
 using System.Reflection;
 using System.Text;
-using JOSYN.Foundation.PropertyBag;
 using JOSYN.Foundation.ResultPattern;
 using JOSYN.Jap.Shared.Contract;
 using JOSYN.Commons.Log;
@@ -27,7 +26,12 @@ public sealed class Core : ICore
                 LocalLog.WriteError(createJAPClient.ToResult());
                 return -1;
             }
-
+#if DEBUG
+            var getEnv = await (createJAPClient.Value as IJosynApplicationProtocol).GetEnvironment();
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.WriteLine(getEnv.Succeeded ? ("Current Runtime-Environment: " + getEnv.Value) : ("getEnv-ERR:" + getEnv.ErrorMessage));
+            Console.ResetColor();
+#endif
             var invokeResult = await JobInvoker.InvokeJob(createJAPClient.Value);
             if (invokeResult.Succeeded) return 0;
 

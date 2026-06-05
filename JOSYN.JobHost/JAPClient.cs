@@ -8,15 +8,15 @@ namespace JOSYN.JobHost;
 internal sealed class JAPClient : IJosynApplicationProtocol
 {
     private JAPClient() { }
-    
+
     internal required ClientPipes Pipes { get; init; }
-    
+
     internal static async Task<Result<JAPClient>> CreateConnectedClient(string[] args)
     {
         var sessionKey = PipesProtocol.ParseSessionKeyCLIArguments(args);
         if (sessionKey == Guid.Empty)
             return Result.Error("Der Anwendung wurde kein Pipes-SessionKey übergeben");
-        
+
         var getPipes = await PipesClient.ConnectAsync(sessionKey);
         if (!getPipes.Succeeded)
             return Result<JAPClient>.Propagate(getPipes.ToResult<JAPClient>());
@@ -49,15 +49,28 @@ internal sealed class JAPClient : IJosynApplicationProtocol
     {
         var result = await JipClient.SendAsync(Pipes, nameof(IJosynApplicationProtocol.PutError), serializedError);
         return !result.Succeeded ? Result.Propagate(result.ToResult()) : Result.Success;
-    }
-    
+    }    
+
     internal async Task<Result> PutError(ErrorReport report)
     {
         var serialized = PropertyBag.Serialize(report, JsonDictionarySerializer.Serialize);
         if (!serialized.Succeeded)
             return Result.Propagate(serialized.ToResult());
-        IJosynApplicationProtocol protocolImpl = this; 
-        var put = await protocolImpl.PutError(serialized.Value);        
+        IJosynApplicationProtocol protocolImpl = this;
+        var put = await protocolImpl.PutError(serialized.Value);
         return !put.Succeeded ? Result.Propagate(put) : Result.Success;
+    }
+
+    async Task<Result<RuntimeEnvironment>> IJosynApplicationProtocol.GetEnvironment()
+    {
+        var getEnv = await JipClient.SendAsync(Pipes, nameof(IJosynApplicationProtocol.GetEnvironment));
+
+        if (!getEnv.Succeeded)
+            return Result<RuntimeEnvironment>.Propagate(getEnv.ToResult<RuntimeEnvironment>());
+
+        if (!Enum.TryParse<RuntimeEnvironment>(getEnv.Value, out var env))
+            return Result<RuntimeEnvironment>.Fail($"Ungültiger RuntimeEnvironment-Wert: '{getEnv.Value}'");
+
+        return env;
     }
 }
