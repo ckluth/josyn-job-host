@@ -9,6 +9,7 @@ namespace JOSYN.JobHost;
 /// <inheritdoc cref="ICore"/>
 public sealed class Core : ICore
 {
+    
     /// <inheritdoc/>
     public static async Task<int> Run(string[] args)
     {
@@ -26,18 +27,23 @@ public sealed class Core : ICore
                 LocalLog.WriteError(createJAPClient.ToResult());
                 return -1;
             }
-#if DEBUG
+            
             var getEnv = await (createJAPClient.Value as IJosynApplicationProtocol).GetEnvironment();
-            Console.ForegroundColor = ConsoleColor.Magenta;
-            Console.WriteLine(getEnv.Succeeded ? ("Current Runtime-Environment: " + getEnv.Value) : ("getEnv-ERR:" + getEnv.ErrorMessage));
-            Console.ResetColor();
-#endif
+            if (!getEnv.Succeeded)
+            {
+                await ReportErrorToServer(createJAPClient.Value, getEnv.ToResult());
+                return -1;
+            }
+            Environment = getEnv.Value;
+
             var invokeResult = await JobInvoker.InvokeJob(createJAPClient.Value);
             if (invokeResult.Succeeded) return 0;
 
+            // TODO: Local nur, wenn ReportErrorToServer failed
             LocalLog.WriteError(invokeResult);
             await ReportErrorToServer(createJAPClient.Value, invokeResult);
-            return -2;
+            
+            return -1;
         }
         finally
         {
@@ -46,16 +52,13 @@ public sealed class Core : ICore
             Console.ReadKey(true);
 #endif
         }
-    }
+    }           
 
+    internal static readonly string ProcessName = Path.GetFileNameWithoutExtension(Assembly.GetEntryAssembly()?.Location ?? "unknown");
 
-    // -------------------------------------------------------------------------
+    
+    internal static RuntimeEnvironment Environment { get; private set; }
 
-    /// <summary>
-    /// Name of the entry assembly (the job executable filename without extension).
-    /// Used as the error causer identifier when reporting errors to the server.
-    /// </summary>
-    public static readonly string ProcessName = Path.GetFileNameWithoutExtension(Assembly.GetEntryAssembly()?.Location ?? "unknown");
 
     private static async Task ReportErrorToServer(JAPClient client, Result error)
     {

@@ -60,6 +60,27 @@ Argument- und Ergebnistypen müssen `record`-Typen sein, die von
 
 ---
 
+## CurrentJob — Laufzeit-API
+
+Während der `[JobEntryPoint]` läuft, stellt `CurrentJob` statische Lese-Eigenschaften bereit,
+die den aktuellen Ausführungskontext beschreiben. Kein Konstruktor, keine Injektion —
+direkt zugreifen:
+
+```csharp
+string name              = CurrentJob.Name;         // z. B. "Contoso.DemoProduct.DemoJob"
+RuntimeEnvironment env   = CurrentJob.Environment;  // z. B. INT
+```
+
+| Eigenschaft | Typ | Beschreibung |
+|---|---|---|
+| `Name` | `string` | Assembly-Name des laufenden Job-Prozesses |
+| `Environment` | `RuntimeEnvironment` | Laufzeit-Umgebung, geliefert vom JAPServer beim Session-Start |
+
+> `CurrentJob` ist nur nach Verbindungsaufbau durch `Core.Run` gültig —
+> d. h. ausschließlich innerhalb eines aktiven `[JobEntryPoint]`-Aufrufs.
+
+---
+
 ## Architektur
 
 ```mermaid
