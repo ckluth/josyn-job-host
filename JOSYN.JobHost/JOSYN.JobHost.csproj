@@ -34,10 +34,10 @@
 		<None Include="icon.png" Pack="true" PackagePath="\"/>
 	</ItemGroup>
 	<ItemGroup>
+		<PackageReference Include="JOSYN.Commons.Log"          Version="1.0.0-preview01"/>
 		<PackageReference Include="JOSYN.Foundation.JIP" Version="1.0.0-preview01"/>
 		<PackageReference Include="JOSYN.Foundation.PropertyBag" Version="1.0.0-preview01"/>
 		<PackageReference Include="JOSYN.Foundation.ResultPattern" Version="1.0.0-preview01"/>
 		<PackageReference Include="JOSYN.Jap.Shared.Contract" Version="1.0.0-preview01"/>
-		<PackageReference Include="JOSYN.Jap.Shared.Log" Version="1.0.0-preview01"/>
 	</ItemGroup>
 </Project>

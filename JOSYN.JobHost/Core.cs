@@ -3,7 +3,7 @@ using System.Text;
 using JOSYN.Foundation.PropertyBag;
 using JOSYN.Foundation.ResultPattern;
 using JOSYN.Jap.Shared.Contract;
-using JOSYN.Jap.Shared.Log;
+using JOSYN.Commons.Log;
 
 namespace JOSYN.JobHost;
 
