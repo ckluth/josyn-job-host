@@ -143,6 +143,9 @@ internal static class JobInvoker
 #if DEBUG
         DbgPrint("JobArguments successfuly retrieved", rawArguments.Value);
 #endif
+        if (string.IsNullOrWhiteSpace(rawArguments.Value))
+            return Result<object[]?>.Fail("Job erwartet Argumente, aber es wurden keine übergeben.");
+
         var createInvicationArguments = RetrieveInvocationArguments(func, rawArguments.Value);
         if (!createInvicationArguments.Succeeded)
             return Result<object[]?>.Propagate(createInvicationArguments.ToResult<object[]?>());
