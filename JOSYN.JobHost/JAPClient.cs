@@ -1,7 +1,7 @@
 using JOSYN.Foundation.JIP;
 using JOSYN.Foundation.PropertyBag;
 using JOSYN.Foundation.ResultPattern;
-using JOSYN.Jap.Shared.Contract;
+using JOSYN.Jap.Contract;
 
 namespace JOSYN.JobHost;
 

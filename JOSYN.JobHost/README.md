@@ -94,7 +94,7 @@ flowchart TD
 ```
 
 **Transport:** `JOSYN.Foundation.JIP` Named Pipes (session-isoliert per GUID-Key).
-**Anwendungsprotokoll:** `JOSYN.Jap.Shared.Contract.IJosynApplicationProtocol`.
+**Anwendungsprotokoll:** `JOSYN.Jap.Contract.IJosynApplicationProtocol`.
 **Serialisierung:** `JOSYN.Foundation.PropertyBag` (INI oder JSON, auto-erkannt).
 
 ---
@@ -136,7 +136,7 @@ PutError selbst fehlgeschlagen  →  LocalLog.Error(...)              (Fallback 
 | `JOSYN.Foundation.ResultPattern` | Fehler-als-Wert-Pattern durchgängig |
 | `JOSYN.Foundation.JIP` | Named-Pipe-IPC-Transport |
 | `JOSYN.Foundation.PropertyBag` | Argument- / Ergebnis-Serialisierung |
-| `JOSYN.Jap.Shared.Contract` | `IJosynApplicationProtocol`-Anwendungsprotokoll |
+| `JOSYN.Jap.Contract` | `IJosynApplicationProtocol`-Anwendungsprotokoll |
 | `JOSYN.Jap.Shared.Log` | `LocalLog` für Fehlerprotokollierung |
 
 ---

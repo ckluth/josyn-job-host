@@ -1,6 +1,6 @@
 using JOSYN.Foundation.ResultPattern;
 using JOSYN.Foundation.PropertyBag;
-using JOSYN.Jap.Shared.Contract;
+using JOSYN.Jap.Contract;
 using JOSYN.JobHost.Attributes;
 
 namespace JOSYN.JobHost.Test;

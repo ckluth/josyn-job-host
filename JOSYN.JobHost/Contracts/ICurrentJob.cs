@@ -1,4 +1,4 @@
-using JOSYN.Jap.Shared.Contract;
+using JOSYN.Jap.Contract;
 
 namespace JOSYN.JobHost;
 
