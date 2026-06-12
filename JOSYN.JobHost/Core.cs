@@ -1,5 +1,6 @@
 using System.Reflection;
 using System.Text;
+using JOSYN.Foundation.JIP;
 using JOSYN.Foundation.ResultPattern;
 using JOSYN.Jap.Contract;
 using JOSYN.Commons.Log;
@@ -27,23 +28,31 @@ public sealed class Core : ICore
                 LocalLog.WriteError(createJAPClient.ToResult());
                 return -1;
             }
-            
-            var getEnv = await (createJAPClient.Value as IJosynApplicationProtocol).GetEnvironment();
-            if (!getEnv.Succeeded)
+
+            var client = createJAPClient.Value;
+            try
             {
-                await ReportErrorToServer(createJAPClient.Value, getEnv.ToResult());
+                var getEnv = await (client as IJosynApplicationProtocol).GetEnvironment();
+                if (!getEnv.Succeeded)
+                {
+                    await ReportErrorToServer(client, getEnv.ToResult());
+                    return -1;
+                }
+                Environment = getEnv.Value;
+
+                var invokeResult = await JobInvoker.InvokeJob(client);
+                if (invokeResult.Succeeded) return 0;
+
+                // TODO: Local nur, wenn ReportErrorToServer failed
+                LocalLog.WriteError(invokeResult);
+                await ReportErrorToServer(client, invokeResult);
+
                 return -1;
             }
-            Environment = getEnv.Value;
-
-            var invokeResult = await JobInvoker.InvokeJob(createJAPClient.Value);
-            if (invokeResult.Succeeded) return 0;
-
-            // TODO: Local nur, wenn ReportErrorToServer failed
-            LocalLog.WriteError(invokeResult);
-            await ReportErrorToServer(createJAPClient.Value, invokeResult);
-            
-            return -1;
+            finally
+            {
+                await PipesClient.DisconnectAsync(client.Pipes, sendShutdownRequest: true);
+            }
         }
         finally
         {
