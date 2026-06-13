@@ -25,6 +25,34 @@ internal sealed class JAPClient : IJosynApplicationProtocol
         return client;
     }
 
+    // -------------------------------------------------------------------------
+    // Session start negotiation
+    // -------------------------------------------------------------------------
+
+    async Task<Result> IJosynApplicationProtocol.AcceptSession()
+    {
+        var result = await JipClient.SendAsync(Pipes, nameof(IJosynApplicationProtocol.AcceptSession));
+        return !result.Succeeded ? Result.Propagate(result.ToResult()) : Result.Success;
+    }
+
+    async Task<Result> IJosynApplicationProtocol.RejectSession()
+    {
+        var result = await JipClient.SendAsync(Pipes, nameof(IJosynApplicationProtocol.RejectSession));
+        return !result.Succeeded ? Result.Propagate(result.ToResult()) : Result.Success;
+    }
+
+    async Task<Result<string>> IJosynApplicationProtocol.GetConcurrentSessionArguments()
+    {
+        var result = await JipClient.SendAsync(Pipes, nameof(IJosynApplicationProtocol.GetConcurrentSessionArguments));
+        if (!result.Succeeded)
+            return Result<string>.Propagate(result.ToResult<string>());
+        return Result<string>.Success(result.Value ?? "[]");
+    }
+
+    // -------------------------------------------------------------------------
+    // Job execution
+    // -------------------------------------------------------------------------
+
     async Task<Result<string>> IJosynApplicationProtocol.GetRawArguments()
     {
         var getConfig = await JipClient.SendAsync(Pipes, nameof(IJosynApplicationProtocol.GetRawArguments));
@@ -45,11 +73,17 @@ internal sealed class JAPClient : IJosynApplicationProtocol
             : Result.Success;
     }
 
+    async Task<Result> IJosynApplicationProtocol.PutDomainError(string? description)
+    {
+        var result = await JipClient.SendAsync(Pipes, nameof(IJosynApplicationProtocol.PutDomainError), description ?? string.Empty);
+        return !result.Succeeded ? Result.Propagate(result.ToResult()) : Result.Success;
+    }
+
     async Task<Result> IJosynApplicationProtocol.PutError(string serializedError)
     {
         var result = await JipClient.SendAsync(Pipes, nameof(IJosynApplicationProtocol.PutError), serializedError);
         return !result.Succeeded ? Result.Propagate(result.ToResult()) : Result.Success;
-    }    
+    }
 
     internal async Task<Result> PutError(ErrorReport report)
     {

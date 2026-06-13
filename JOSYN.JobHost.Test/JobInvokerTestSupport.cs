@@ -11,6 +11,11 @@ internal sealed class FakeProtocol(string rawArguments = "") : IJosynApplication
 {
     public string? LastPutResult { get; private set; }
 
+    public Task<Result> AcceptSession() => Task.FromResult(Result.Success);
+    public Task<Result> RejectSession() => Task.FromResult(Result.Success);
+    public Task<Result<string>> GetConcurrentSessionArguments()
+        => Task.FromResult(Result<string>.Success("[]"));
+
     public Task<Result<string>> GetRawArguments()
         => Task.FromResult(Result<string>.Success(rawArguments));
 
@@ -20,8 +25,8 @@ internal sealed class FakeProtocol(string rawArguments = "") : IJosynApplication
         return Task.FromResult(Result.Success);
     }
 
-    public Task<Result> PutError(string serializedError)
-        => Task.FromResult(Result.Success);
+    public Task<Result> PutDomainError(string? description) => Task.FromResult(Result.Success);
+    public Task<Result> PutError(string serializedError) => Task.FromResult(Result.Success);
 
     public Task<Result<RuntimeEnvironment>> GetEnvironment()
         => Task.FromResult(Result<RuntimeEnvironment>.Success(RuntimeEnvironment.DEV));
@@ -29,10 +34,16 @@ internal sealed class FakeProtocol(string rawArguments = "") : IJosynApplication
 
 internal sealed class FailingGetArgumentsProtocol : IJosynApplicationProtocol
 {
+    public Task<Result> AcceptSession() => Task.FromResult(Result.Success);
+    public Task<Result> RejectSession() => Task.FromResult(Result.Success);
+    public Task<Result<string>> GetConcurrentSessionArguments()
+        => Task.FromResult(Result<string>.Success("[]"));
+
     public Task<Result<string>> GetRawArguments()
         => Task.FromResult(Result<string>.Fail("Verbindung verloren"));
 
     public Task<Result> PutRawResult(string result) => Task.FromResult(Result.Success);
+    public Task<Result> PutDomainError(string? description) => Task.FromResult(Result.Success);
     public Task<Result> PutError(string serializedError) => Task.FromResult(Result.Success);
 
     public Task<Result<RuntimeEnvironment>> GetEnvironment()
