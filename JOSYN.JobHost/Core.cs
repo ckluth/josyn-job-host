@@ -16,9 +16,9 @@ public sealed class Core : ICore
     /// <inheritdoc/>
     public static async Task<int> Run(string[] args)
     {
+#if DEBUG
         Console.InputEncoding = new UTF8Encoding();
         Console.OutputEncoding = new UTF8Encoding();
-#if DEBUG
         LocalLog.EnableConsoleOutput = true;
 #endif
 
