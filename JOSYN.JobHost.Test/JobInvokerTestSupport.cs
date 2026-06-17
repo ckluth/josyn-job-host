@@ -30,6 +30,9 @@ internal sealed class FakeProtocol(string rawArguments = "") : IJosynApplication
 
     public Task<Result<RuntimeEnvironment>> GetEnvironment()
         => Task.FromResult(Result<RuntimeEnvironment>.Success(RuntimeEnvironment.DEV));
+
+    public Task<Result<string>> GetConfigValue(string settingPath)
+        => Task.FromResult(Result<string>.Success(settingPath));
 }
 
 internal sealed class FailingGetArgumentsProtocol : IJosynApplicationProtocol
@@ -48,6 +51,9 @@ internal sealed class FailingGetArgumentsProtocol : IJosynApplicationProtocol
 
     public Task<Result<RuntimeEnvironment>> GetEnvironment()
         => Task.FromResult(Result<RuntimeEnvironment>.Success(RuntimeEnvironment.DEV));
+
+    public Task<Result<string>> GetConfigValue(string settingPath)
+        => Task.FromResult(Result<string>.Success(settingPath));
 }
 
 // ── Stub types ────────────────────────────────────────────────────────────────

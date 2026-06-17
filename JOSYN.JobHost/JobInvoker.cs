@@ -21,7 +21,7 @@ internal static class JobInvoker
             var findEntrypointAssembly = FindEntryPointAssembly(entrypointType);
             if (!findEntrypointAssembly.Succeeded)
                 return Result.Propagate(findEntrypointAssembly.ToResult());
-
+            
             return await InvokeJob(japClient, findEntrypointAssembly.Value.GetExportedTypes());
         }
         catch (Exception ex) { return ex; }
