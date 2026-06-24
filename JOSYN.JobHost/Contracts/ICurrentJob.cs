@@ -1,6 +1,8 @@
 using JOSYN.Jap.Contract;
 
+#pragma warning disable IDE0130
 namespace JOSYN.JobHost;
+#pragma warning restore IDE0130
 
 /// <summary>
 /// Exposes read-only runtime information about the currently executing job.

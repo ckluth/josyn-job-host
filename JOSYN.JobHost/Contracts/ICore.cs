@@ -1,4 +1,6 @@
+#pragma warning disable IDE0130
 namespace JOSYN.JobHost;
+#pragma warning restore IDE0130
 
 /// <summary>
 /// Contract for the entry point of a job executable.
